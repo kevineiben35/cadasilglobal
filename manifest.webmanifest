@@ -1,0 +1,16 @@
+{
+  "name": "CADASIL Global Foundation",
+  "short_name": "CADASIL Global",
+  "description": "Accelerating awareness, earlier diagnosis, research, and support for CADASIL — a rare genetic small-vessel disease and a leading inherited cause of stroke in adults.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#143E6E",
+  "lang": "en",
+  "categories": ["health", "education", "medical", "nonprofit"],
+  "icons": [
+    { "src": "assets/img/logo-icon.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "assets/img/logo-icon.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

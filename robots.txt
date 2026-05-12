@@ -1,0 +1,36 @@
+# robots.txt — CADASIL Global Foundation
+# https://www.cadasilglobal.org/
+
+User-agent: *
+Allow: /
+Disallow: /404.html
+
+# AI / answer engines — explicitly welcome
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+Sitemap: https://www.cadasilglobal.org/sitemap.xml

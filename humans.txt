@@ -1,0 +1,16 @@
+/* TEAM */
+CADASIL Global Foundation — accelerating awareness, earlier diagnosis, research, and support for CADASIL.
+Site: https://www.cadasilglobal.org
+Contact: hello@cadasilglobal.org
+Location: Toronto, Canada · Serving patients globally
+
+/* THANKS */
+To every patient and family who shared their story.
+To every clinician who saw the pattern early.
+To every researcher whose work moves us forward.
+
+/* SITE */
+Standards: HTML5, CSS3, ES Modules
+Components: Vanilla JS, no frameworks
+Typography: Montserrat
+Palette: #119D9A · #143E6E · #1F7FA3 · #2F3E4E
