@@ -245,6 +245,7 @@ p { margin: 0 0 1em; }
     left: auto;
     width: min(320px, 92vw);
     height: calc(100vh - var(--header-h));
+    height: calc(100dvh - var(--header-h));
     background: var(--white);
     display: flex;
     flex-direction: column;
@@ -287,6 +288,7 @@ p { margin: 0 0 1em; }
   body.translated-rtl .nav-list {
     top: calc(var(--header-h) + 40px);
     height: calc(100vh - var(--header-h) - 40px);
+    height: calc(100dvh - var(--header-h) - 40px);
   }
 }
 
