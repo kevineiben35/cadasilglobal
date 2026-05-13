@@ -142,4 +142,25 @@
   document.querySelectorAll('[data-year]').forEach(el => {
     el.textContent = new Date().getFullYear();
   });
+
+  /* ---------- Google Translate widget ---------- */
+  if (header && !document.getElementById('google_translate_element')) {
+    const bar = document.createElement('div');
+    bar.className = 'lang-bar';
+    bar.innerHTML = '<div class="lang-bar-inner"><span class="lang-bar-label">Translate:</span><div id="google_translate_element"></div></div>';
+    header.insertAdjacentElement('afterend', bar);
+
+    window.googleTranslateElementInit = function () {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+        autoDisplay: false
+      }, 'google_translate_element');
+    };
+
+    const s = document.createElement('script');
+    s.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+    s.async = true;
+    document.head.appendChild(s);
+  }
 })();
