@@ -304,10 +304,17 @@ p { margin: 0 0 1em; }
   border: 0 !important;
 }
 #google_translate_element img { display: inline-block; }
-/* Hide the Google "Translate this page" top banner that shifts content */
-.goog-te-banner-frame.skiptranslate,
-.goog-te-banner-frame { display: none !important; }
-body { top: 0 !important; }
+/* When Google Translate is active, Google injects a ~40px banner at
+   the top of the viewport. Push the body down and offset the sticky
+   header so the logo and nav links aren't hidden behind it. */
+body.translated-ltr,
+body.translated-rtl {
+  padding-top: 40px;
+}
+body.translated-ltr .site-header,
+body.translated-rtl .site-header {
+  top: 40px;
+}
 
 /* ---------- Buttons ---------- */
 .btn {
