@@ -59,6 +59,7 @@ body {
   background: var(--white);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: clip;
 }
 img, svg, video { max-width: 100%; height: auto; display: block; }
 a { color: var(--teal); text-decoration: none; transition: color var(--t-fast); }
@@ -169,6 +170,7 @@ p { margin: 0 0 1em; }
   align-items: center;
   gap: 12px;
   text-decoration: none;
+  flex-shrink: 0;
 }
 .brand img { height: 44px; width: auto; }
 .brand-text {
@@ -209,7 +211,7 @@ p { margin: 0 0 1em; }
   color: var(--navy);
   background: rgba(17, 157, 154, 0.08);
 }
-.nav-cta { display: flex; align-items: center; gap: 10px; }
+.nav-cta { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
 .nav-list .nav-cta-mobile { display: none; }
 .nav-toggle {
   display: none;
