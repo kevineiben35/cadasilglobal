@@ -203,6 +203,7 @@ p { margin: 0 0 1em; }
   background: rgba(17, 157, 154, 0.08);
 }
 .nav-cta { display: flex; align-items: center; gap: 10px; }
+.nav-list .nav-cta-mobile { display: none; }
 .nav-toggle {
   display: none;
   background: transparent;
