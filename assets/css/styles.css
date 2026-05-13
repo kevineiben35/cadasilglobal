@@ -240,27 +240,45 @@ p { margin: 0 0 1em; }
   .nav-toggle { display: block; }
   .nav-list {
     position: fixed;
-    inset: var(--header-h) 0 0 0;
+    top: var(--header-h);
+    right: 0;
+    bottom: 0;
+    left: auto;
+    width: min(300px, 88vw);
     background: var(--white);
     flex-direction: column;
     justify-content: flex-start;
     align-items: stretch;
-    padding: 24px;
-    gap: 4px;
+    padding: 14px 18px 20px;
+    gap: 0;
     transform: translateX(100%);
     transition: transform var(--t-base);
     overflow-y: auto;
-    border-top: 1px solid rgba(20, 62, 110, 0.08);
+    border-left: 1px solid rgba(20, 62, 110, 0.08);
+    box-shadow: -12px 0 32px rgba(15, 27, 42, 0.12);
   }
   .nav-list.open { transform: translateX(0); }
-  .nav-list a { padding: 14px 16px; font-size: 1.05rem; }
+  .nav-list li { width: 100%; }
+  .nav-list a {
+    display: block;
+    padding: 11px 14px;
+    font-size: 0.98rem;
+    border-radius: var(--radius-sm);
+  }
   .nav-list .nav-cta-mobile {
-    margin-top: 16px;
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(20, 62, 110, 0.08);
     display: flex;
     flex-direction: column;
     gap: 10px;
   }
   .nav-cta .btn:not(.btn-primary) { display: none; }
+  /* Account for the Google Translate banner when active */
+  body.translated-ltr .nav-list,
+  body.translated-rtl .nav-list {
+    top: calc(var(--header-h) + 40px);
+  }
 }
 
 /* ---------- Language bar (Google Translate) ---------- */
