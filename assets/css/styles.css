@@ -242,8 +242,8 @@ p { margin: 0 0 1em; }
     position: fixed;
     top: var(--header-h);
     right: 0;
-    left: auto;
-    width: min(320px, 92vw);
+    left: 0;
+    width: 100%;
     height: calc(100vh - var(--header-h));
     height: calc(100dvh - var(--header-h));
     background: var(--white);
@@ -251,17 +251,23 @@ p { margin: 0 0 1em; }
     flex-direction: column;
     justify-content: flex-start;
     align-items: stretch;
-    padding: 16px 18px;
+    padding: 16px 20px 24px;
     margin: 0;
     gap: 0;
-    transform: translateX(110%);
-    transition: transform var(--t-base);
+    visibility: hidden;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: transform var(--t-base), visibility 0s linear var(--t-base), opacity var(--t-base);
     overflow-y: auto;
-    border-left: 1px solid rgba(20, 62, 110, 0.08);
-    box-shadow: -12px 0 32px rgba(15, 27, 42, 0.14);
+    box-shadow: 0 12px 24px rgba(15, 27, 42, 0.08);
     z-index: 110;
   }
-  .nav-list.open { transform: translateX(0); }
+  .nav-list.open {
+    visibility: visible;
+    opacity: 1;
+    transform: translateX(0);
+    transition: transform var(--t-base), visibility 0s, opacity var(--t-base);
+  }
   .nav-list li {
     display: block;
     width: 100%;
@@ -289,6 +295,31 @@ p { margin: 0 0 1em; }
     top: calc(var(--header-h) + 40px);
     height: calc(100vh - var(--header-h) - 40px);
     height: calc(100dvh - var(--header-h) - 40px);
+  }
+}
+
+/* ---------- Phone-specific (small screens) ---------- */
+@media (max-width: 640px) {
+  :root { --header-h: 64px; }
+  body { font-size: 15px; }
+  .site-header > .container.nav-bar {
+    padding-left: 12px;
+    padding-right: 12px;
+    gap: 8px;
+  }
+  .brand img { height: 34px; }
+  .brand-text strong { font-size: 0.95rem; letter-spacing: 0.02em; }
+  .brand-text span { display: none; }
+  .nav-cta { gap: 4px; }
+  .nav-cta .btn { display: none; }
+  .nav-toggle { width: 40px; height: 40px; }
+  .lang-bar {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  .lang-bar-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
   }
 }
 
