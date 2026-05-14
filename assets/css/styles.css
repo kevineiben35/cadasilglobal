@@ -59,6 +59,7 @@ body {
   background: var(--white);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: clip;
 }
 img, svg, video { max-width: 100%; height: auto; display: block; }
 a { color: var(--teal); text-decoration: none; transition: color var(--t-fast); }
@@ -152,19 +153,24 @@ p { margin: 0 0 1em; }
   box-shadow: var(--shadow-md);
   background: rgba(255, 255, 255, 0.98);
 }
+.site-header > .container.nav-bar {
+  max-width: 100%;
+  padding-left: clamp(16px, 2vw, 40px);
+  padding-right: clamp(16px, 2vw, 40px);
+}
 .nav-bar {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   height: var(--header-h);
   gap: 16px;
-  max-width: var(--container-wide);
 }
+.nav-bar > nav { flex: 1 1 auto; min-width: 0; }
 .brand {
   display: flex;
   align-items: center;
   gap: 12px;
   text-decoration: none;
+  flex-shrink: 0;
 }
 .brand img { height: 44px; width: auto; }
 .brand-text {
@@ -188,14 +194,15 @@ p { margin: 0 0 1em; }
   padding: 0;
   display: flex;
   align-items: center;
-  gap: 4px;
+  justify-content: space-between;
+  gap: 2px;
 }
 .nav-list a {
   display: inline-block;
   padding: 10px 10px;
   color: var(--slate);
   font-weight: 500;
-  font-size: 0.92rem;
+  font-size: 0.9rem;
   border-radius: var(--radius-sm);
   white-space: nowrap;
   transition: color var(--t-fast), background var(--t-fast);
@@ -204,7 +211,8 @@ p { margin: 0 0 1em; }
   color: var(--navy);
   background: rgba(17, 157, 154, 0.08);
 }
-.nav-cta { display: flex; align-items: center; gap: 10px; }
+.nav-cta { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.nav-list .nav-cta-mobile { display: none; }
 .nav-toggle {
   display: none;
   background: transparent;
@@ -232,26 +240,149 @@ p { margin: 0 0 1em; }
   .nav-toggle { display: block; }
   .nav-list {
     position: fixed;
-    inset: var(--header-h) 0 0 0;
+    top: var(--header-h);
+    right: 0;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - var(--header-h));
+    height: calc(100dvh - var(--header-h));
     background: var(--white);
+    display: flex;
     flex-direction: column;
+    justify-content: flex-start;
     align-items: stretch;
-    padding: 24px;
-    gap: 4px;
+    padding: 16px 20px 24px;
+    margin: 0;
+    gap: 0;
+    visibility: hidden;
+    opacity: 0;
     transform: translateX(100%);
-    transition: transform var(--t-base);
+    transition: transform var(--t-base), visibility 0s linear var(--t-base), opacity var(--t-base);
     overflow-y: auto;
-    border-top: 1px solid rgba(20, 62, 110, 0.08);
+    box-shadow: 0 12px 24px rgba(15, 27, 42, 0.08);
+    z-index: 110;
   }
-  .nav-list.open { transform: translateX(0); }
-  .nav-list a { padding: 14px 16px; font-size: 1.05rem; }
+  .nav-list.open {
+    visibility: visible;
+    opacity: 1;
+    transform: translateX(0);
+    transition: transform var(--t-base), visibility 0s, opacity var(--t-base);
+  }
+  .nav-list li {
+    display: block;
+    width: 100%;
+    list-style: none;
+  }
+  .nav-list a {
+    display: block;
+    width: 100%;
+    padding: 12px 14px;
+    font-size: 1rem;
+    border-radius: var(--radius-sm);
+  }
   .nav-list .nav-cta-mobile {
-    margin-top: 16px;
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(20, 62, 110, 0.08);
     display: flex;
     flex-direction: column;
     gap: 10px;
   }
   .nav-cta .btn:not(.btn-primary) { display: none; }
+  /* Account for the Google Translate banner when active */
+  body.translated-ltr .nav-list,
+  body.translated-rtl .nav-list {
+    top: calc(var(--header-h) + 40px);
+    height: calc(100vh - var(--header-h) - 40px);
+    height: calc(100dvh - var(--header-h) - 40px);
+  }
+}
+
+/* ---------- Phone-specific (small screens) ---------- */
+@media (max-width: 640px) {
+  :root { --header-h: 64px; }
+  body { font-size: 15px; }
+  .site-header > .container.nav-bar {
+    padding-left: 12px;
+    padding-right: 12px;
+    gap: 10px;
+  }
+  .brand { gap: 8px; }
+  .brand img { height: 34px; }
+  .brand-text strong { font-size: 0.92rem; letter-spacing: 0.02em; }
+  .brand-text span {
+    font-size: 0.55rem;
+    letter-spacing: 0.16em;
+    margin-top: 3px;
+  }
+  .nav-cta { gap: 4px; }
+  .nav-cta .btn { display: none; }
+  .nav-toggle { width: 40px; height: 40px; }
+  .lang-bar {
+    padding: 4px 12px;
+  }
+  .lang-bar-inner { gap: 8px; }
+  .lang-bar-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+  }
+  #google_translate_element .goog-te-gadget-simple {
+    padding: 2px 8px !important;
+    font-size: 0.78rem !important;
+  }
+}
+
+/* ---------- Language bar (Google Translate) ---------- */
+.lang-bar {
+  background: rgba(255, 255, 255, 0.96);
+  border-bottom: 1px solid rgba(20, 62, 110, 0.08);
+  padding: 6px clamp(16px, 2vw, 40px);
+}
+.lang-bar-inner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.lang-bar-label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--navy);
+}
+#google_translate_element .goog-te-gadget {
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 0.85rem !important;
+  color: var(--slate) !important;
+}
+#google_translate_element .goog-te-gadget-simple {
+  background-color: transparent !important;
+  border: 1px solid rgba(20, 62, 110, 0.18) !important;
+  border-radius: 999px !important;
+  padding: 4px 12px !important;
+  font-size: 0.85rem !important;
+  line-height: 1.2 !important;
+  color: var(--navy) !important;
+}
+#google_translate_element .goog-te-gadget-simple .goog-te-menu-value {
+  color: var(--navy) !important;
+}
+#google_translate_element .goog-te-gadget-simple .goog-te-menu-value span {
+  color: var(--navy) !important;
+  border: 0 !important;
+}
+#google_translate_element img { display: inline-block; }
+/* When Google Translate is active, Google injects a ~40px banner at
+   the top of the viewport. Push the body down and offset the sticky
+   header so the logo and nav links aren't hidden behind it. */
+body.translated-ltr,
+body.translated-rtl {
+  padding-top: 40px;
+}
+body.translated-ltr .site-header,
+body.translated-rtl .site-header {
+  top: 40px;
 }
 
 /* ---------- Buttons ---------- */
@@ -1047,18 +1178,6 @@ table.data tbody tr:last-child td { border-bottom: 0; }
 .center { text-align: center; }
 .text-teal { color: var(--teal); }
 .text-navy { color: var(--navy); }
-.skip-link {
-  position: absolute;
-  top: -40px;
-  left: 12px;
-  background: var(--navy);
-  color: #fff;
-  padding: 10px 16px;
-  border-radius: 6px;
-  z-index: 200;
-  transition: top var(--t-base);
-}
-.skip-link:focus { top: 12px; color: #fff; }
 
 /* Pull quote */
 .pull-quote {
