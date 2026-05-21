@@ -58,3 +58,23 @@ Cloudflare automatically rebuilds and deploys the live site at
 cadasilglobal.org within a minute or two. Each open PR also gets its own
 preview link (posted as a comment on the PR) so you can check changes before
 merging.
+
+## Important: bump the CSS version when you change styles
+
+Every page links the stylesheet with a version tag, like:
+
+```html
+<link rel="stylesheet" href="assets/css/styles.css?v=20260521-1" />
+```
+
+That `?v=...` tag is a "cache-buster." Browsers and Cloudflare cache the CSS
+file, so if you change `assets/css/styles.css` but leave the version tag the
+same, visitors keep seeing the **old** styles — your change appears to do
+nothing even though it's correct on `main`.
+
+**Whenever you edit `assets/css/styles.css`, bump the version tag on every
+page.** Use today's date plus a number, e.g. `?v=20260521-1`, then `-2` if you
+change it again the same day. (If you ask Claude to make a CSS change, just
+remind it to "bump the CSS version too" and it will update all pages.)
+
+This does not apply to HTML or image changes — only CSS.
