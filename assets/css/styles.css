@@ -538,6 +538,7 @@ body.translated-rtl .site-header {
   background-position: center;
   filter: blur(1px);
 }
+.page-hero--dandelion::before { background-image: url('../img/dandelion.png'); }
 .page-hero > .container { position: relative; z-index: 1; }
 .page-hero h1 { color: #fff; }
 .page-hero .lede { color: rgba(255, 255, 255, 0.85); }
