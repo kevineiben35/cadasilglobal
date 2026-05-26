@@ -236,7 +236,7 @@ p { margin: 0 0 1em; }
 .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
 .nav-toggle[aria-expanded="true"] span:nth-child(3) { top: 21px; transform: rotate(-45deg); }
 
-@media (max-width: 1280px) {
+@media (max-width: 1500px) {
   .nav-toggle { display: block; }
   .nav-list {
     position: fixed;
