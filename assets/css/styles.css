@@ -424,6 +424,12 @@ body.translated-rtl .site-header {
   backdrop-filter: blur(8px);
 }
 .btn-on-dark:hover { background: #fff; color: var(--navy); border-color: #fff; }
+.btn-donate {
+  background: var(--amber);
+  color: var(--navy);
+  box-shadow: 0 6px 18px rgba(240, 165, 0, 0.32);
+}
+.btn-donate:hover { background: #d99400; color: var(--navy); box-shadow: 0 10px 24px rgba(240, 165, 0, 0.4); }
 .btn-sm { padding: 10px 18px; font-size: 0.85rem; }
 .btn-lg { padding: 18px 34px; font-size: 1rem; }
 
